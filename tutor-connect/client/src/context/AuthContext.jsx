@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { auth } from '../firebase';
+import { auth } from '../pages/auth/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
 
@@ -12,17 +12,11 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        try {
-          // Get the token and fetch our backend user
-          const token = await firebaseUser.getIdToken();
-          const response = await axios.get('/api/users/me', {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          setCurrentUser(response.data);
-        } catch (error) {
-          console.error('Error fetching user data:', error);
-          setCurrentUser(null);
-        }
+        const token = await firebaseUser.getIdToken();
+        const response = await axios.get('/api/auth/me', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setCurrentUser(response.data);
       } else {
         setCurrentUser(null);
       }
@@ -32,10 +26,7 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const value = {
-    currentUser,
-    loading
-  };
+  const value = { currentUser, loading };
 
   return (
     <AuthContext.Provider value={value}>
