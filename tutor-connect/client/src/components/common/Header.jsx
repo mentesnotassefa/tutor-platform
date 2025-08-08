@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext.jsx';
-import { auth } from '../firebase';
+import { useAuth } from '../../context/AuthContext.jsx';
+import { auth } from '../../firebase.js';
 import { toast } from 'react-toastify';
 
 export default function Header() {

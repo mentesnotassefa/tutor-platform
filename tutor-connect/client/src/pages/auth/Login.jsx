@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider } from './firebase.js';
+import { auth, googleProvider } from '../../firebase.js';
 import { toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
 
