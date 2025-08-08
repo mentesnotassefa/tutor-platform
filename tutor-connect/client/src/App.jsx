@@ -15,6 +15,7 @@ import Register from './pages/auth/Register';
 import TutorList from './pages/student/TutorList';
 import TutorProfile from './pages/student/TutorProfile';
 import TutorDashboard from './pages/tutor/Dashboard';
+// import Dashboard from './pages/student/Dashboard';
 import CompleteProfile from './pages/tutor/CompleteProfile';
 import AdminDashboard from './pages/admin/Dashboard';
 import VerifyTutors from './pages/admin/VerifyTutors';
@@ -38,7 +39,7 @@ function App() {
 
               {/* Student Routes */}
               <Route element={<ProtectedRoute allowedRoles={['student']} />}>
-                <Route path="/student/dashboard" element={<StudentDashboard />} />
+                <Route path="pages/student/Dashboard" element={<Dashboard />} />
               </Route>
 
               {/* Tutor Routes */}
